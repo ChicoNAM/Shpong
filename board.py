@@ -54,3 +54,4 @@ class Board(Turtle):
             self.penup()
             self.forward(20)
             self.pendown()
+            

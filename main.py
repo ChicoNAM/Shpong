@@ -6,14 +6,15 @@ import time
 from scoreboard import Scoreboard
 from gamewindow import GameWindow
 
-def game():
+game_window = GameWindow()
+game_board = Board()
+scoreboard = Scoreboard()
+player1 = Paddle(350,0)
+player2 = Paddle(-350,0)
+ball = Ball()
 
-    game_window = GameWindow()
-    game_board = Board()
-    scoreboard = Scoreboard()
-    player1 = Paddle(350,0)
-    player2 = Paddle(-350,0)
-    ball = Ball()
+
+def game():
 
     game_window.screen.listen()
     game_window.screen.onkeypress(player1.move_up,"Up")
@@ -56,7 +57,17 @@ def game():
             ball.setx(-340)
             ball.x_direction *= -1
             
-    game_window.screen.exitonclick()
+        if scoreboard.score_left == 10:
+            scoreboard.clear()
+            scoreboard.draw_game_over()
+            flag = False
+            
+        if scoreboard.score_right == 10:
+            scoreboard.clear()
+            scoreboard.draw_game_over()
+            flag = False
 
 if __name__ == "__main__":
     game()
+
+game_window.screen.exitonclick()
